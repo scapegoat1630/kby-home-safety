@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--数据库驱动jar -->
+    <context id="MBG" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <commentGenerator type="com.kby.home.safety.util.CNCommentGenerator">
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/home_safety_system?useUnicode=true&amp;characterEncoding=UTF-8" userId="root" password="root" />
+        <javaModelGenerator targetPackage="com.kby.home.safety.model" targetProject=".\src\main\java" />
+        <sqlMapGenerator targetPackage="com.kby.home.safety.mapper" targetProject=".\src\main\java" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.kby.home.safety.mapper" targetProject=".\src\main\java" />
+
+        <table tableName="user" domainObjectName="User">
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+
+        <table tableName="user_room" domainObjectName="Room">
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+        <table tableName="room_monitor" domainObjectName="RoomMonitor">
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+        <table tableName="alert_history" domainObjectName="Alert">
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+        <table tableName="user_contacts" domainObjectName="Contact">
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
