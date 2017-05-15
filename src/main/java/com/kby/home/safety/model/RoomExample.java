@@ -235,52 +235,52 @@ public class RoomExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeEqualTo(Boolean value) {
+        public Criteria andRoomTypeEqualTo(Integer value) {
             addCriterion("room_type =", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeNotEqualTo(Boolean value) {
+        public Criteria andRoomTypeNotEqualTo(Integer value) {
             addCriterion("room_type <>", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeGreaterThan(Boolean value) {
+        public Criteria andRoomTypeGreaterThan(Integer value) {
             addCriterion("room_type >", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andRoomTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("room_type >=", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeLessThan(Boolean value) {
+        public Criteria andRoomTypeLessThan(Integer value) {
             addCriterion("room_type <", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeLessThanOrEqualTo(Boolean value) {
+        public Criteria andRoomTypeLessThanOrEqualTo(Integer value) {
             addCriterion("room_type <=", value, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeIn(List<Boolean> values) {
+        public Criteria andRoomTypeIn(List<Integer> values) {
             addCriterion("room_type in", values, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeNotIn(List<Boolean> values) {
+        public Criteria andRoomTypeNotIn(List<Integer> values) {
             addCriterion("room_type not in", values, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeBetween(Boolean value1, Boolean value2) {
+        public Criteria andRoomTypeBetween(Integer value1, Integer value2) {
             addCriterion("room_type between", value1, value2, "roomType");
             return (Criteria) this;
         }
 
-        public Criteria andRoomTypeNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andRoomTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("room_type not between", value1, value2, "roomType");
             return (Criteria) this;
         }

@@ -27,4 +27,7 @@ public interface RoomMapper {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+    //---------------------------------------
+    int batchInsert(List<Room> list);
+    Room getRoomByRoomType(@Param("userId") Integer userId, @Param("roomType") Integer roomType);
 }

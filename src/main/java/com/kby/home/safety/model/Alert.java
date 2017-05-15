@@ -30,7 +30,7 @@ public class Alert implements Serializable {
      *
      * @mbggenerated
      */
-    private Byte alertType;
+    private Integer alertType;
 
     /**
      *  ,所属表字段为alert_history.alert_value
@@ -86,11 +86,11 @@ public class Alert implements Serializable {
         this.roomId = roomId;
     }
 
-    public Byte getAlertType() {
+    public Integer getAlertType() {
         return alertType;
     }
 
-    public void setAlertType(Byte alertType) {
+    public void setAlertType(Integer alertType) {
         this.alertType = alertType;
     }
 

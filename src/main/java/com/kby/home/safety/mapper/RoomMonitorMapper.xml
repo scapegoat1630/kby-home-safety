@@ -7,6 +7,7 @@
     <result column="temperature" property="temperature" jdbcType="DOUBLE" />
     <result column="humidity" property="humidity" jdbcType="DOUBLE" />
     <result column="smoke" property="smoke" jdbcType="DOUBLE" />
+    <result column="is_latest" property="isLatest" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, room_id, temperature, humidity, smoke, create_time, update_time
+    id, room_id, temperature, humidity, smoke, is_latest, create_time, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kby.home.safety.model.RoomMonitorExample" >
     select
@@ -106,11 +107,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into room_monitor (room_id, temperature, humidity, 
-      smoke, create_time, update_time
-      )
+      smoke, is_latest, create_time, 
+      update_time)
     values (#{roomId,jdbcType=INTEGER}, #{temperature,jdbcType=DOUBLE}, #{humidity,jdbcType=DOUBLE}, 
-      #{smoke,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{smoke,jdbcType=DOUBLE}, #{isLatest,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.kby.home.safety.model.RoomMonitor" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -129,6 +130,9 @@
       </if>
       <if test="smoke != null" >
         smoke,
+      </if>
+      <if test="isLatest != null" >
+        is_latest,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -149,6 +153,9 @@
       </if>
       <if test="smoke != null" >
         #{smoke,jdbcType=DOUBLE},
+      </if>
+      <if test="isLatest != null" >
+        #{isLatest,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -182,6 +189,9 @@
       <if test="record.smoke != null" >
         smoke = #{record.smoke,jdbcType=DOUBLE},
       </if>
+      <if test="record.isLatest != null" >
+        is_latest = #{record.isLatest,jdbcType=INTEGER},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -200,6 +210,7 @@
       temperature = #{record.temperature,jdbcType=DOUBLE},
       humidity = #{record.humidity,jdbcType=DOUBLE},
       smoke = #{record.smoke,jdbcType=DOUBLE},
+      is_latest = #{record.isLatest,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -221,6 +232,9 @@
       <if test="smoke != null" >
         smoke = #{smoke,jdbcType=DOUBLE},
       </if>
+      <if test="isLatest != null" >
+        is_latest = #{isLatest,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -236,8 +250,16 @@
       temperature = #{temperature,jdbcType=DOUBLE},
       humidity = #{humidity,jdbcType=DOUBLE},
       smoke = #{smoke,jdbcType=DOUBLE},
+      is_latest = #{isLatest,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getMonitorByRoomId"  resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from `room_monitor`
+    where  room_id = #{roomId,jdbcType=INTEGER} and  is_latest = 1
+  </select>
 </mapper>

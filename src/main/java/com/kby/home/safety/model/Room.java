@@ -23,7 +23,7 @@ public class Room implements Serializable {
      *
      * @mbggenerated
      */
-    private Boolean roomType;
+    private Integer roomType;
 
     /**
      *  温度阈值,所属表字段为user_room.temperature_threshold
@@ -62,6 +62,14 @@ public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Room(Integer roomType) {
+        this.roomType = roomType;
+    }
+    public Room() {
+
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -78,11 +86,11 @@ public class Room implements Serializable {
         this.userId = userId;
     }
 
-    public Boolean getRoomType() {
+    public Integer getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(Boolean roomType) {
+    public void setRoomType(Integer roomType) {
         this.roomType = roomType;
     }
 

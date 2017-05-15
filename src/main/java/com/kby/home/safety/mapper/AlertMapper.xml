@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="room_id" property="roomId" jdbcType="INTEGER" />
-    <result column="alert_type" property="alertType" jdbcType="TINYINT" />
+    <result column="alert_type" property="alertType" jdbcType="INTEGER" />
     <result column="alert_value" property="alertValue" jdbcType="DOUBLE" />
     <result column="alert_time" property="alertTime" jdbcType="TIMESTAMP" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -109,7 +109,7 @@
     insert into alert_history (user_id, room_id, alert_type, 
       alert_value, alert_time, create_time, 
       udpate_time)
-    values (#{userId,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, #{alertType,jdbcType=TINYINT}, 
+    values (#{userId,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, #{alertType,jdbcType=INTEGER}, 
       #{alertValue,jdbcType=DOUBLE}, #{alertTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
       #{udpateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -149,7 +149,7 @@
         #{roomId,jdbcType=INTEGER},
       </if>
       <if test="alertType != null" >
-        #{alertType,jdbcType=TINYINT},
+        #{alertType,jdbcType=INTEGER},
       </if>
       <if test="alertValue != null" >
         #{alertValue,jdbcType=DOUBLE},
@@ -184,7 +184,7 @@
         room_id = #{record.roomId,jdbcType=INTEGER},
       </if>
       <if test="record.alertType != null" >
-        alert_type = #{record.alertType,jdbcType=TINYINT},
+        alert_type = #{record.alertType,jdbcType=INTEGER},
       </if>
       <if test="record.alertValue != null" >
         alert_value = #{record.alertValue,jdbcType=DOUBLE},
@@ -208,7 +208,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       room_id = #{record.roomId,jdbcType=INTEGER},
-      alert_type = #{record.alertType,jdbcType=TINYINT},
+      alert_type = #{record.alertType,jdbcType=INTEGER},
       alert_value = #{record.alertValue,jdbcType=DOUBLE},
       alert_time = #{record.alertTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -227,7 +227,7 @@
         room_id = #{roomId,jdbcType=INTEGER},
       </if>
       <if test="alertType != null" >
-        alert_type = #{alertType,jdbcType=TINYINT},
+        alert_type = #{alertType,jdbcType=INTEGER},
       </if>
       <if test="alertValue != null" >
         alert_value = #{alertValue,jdbcType=DOUBLE},
@@ -248,7 +248,7 @@
     update alert_history
     set user_id = #{userId,jdbcType=INTEGER},
       room_id = #{roomId,jdbcType=INTEGER},
-      alert_type = #{alertType,jdbcType=TINYINT},
+      alert_type = #{alertType,jdbcType=INTEGER},
       alert_value = #{alertValue,jdbcType=DOUBLE},
       alert_time = #{alertTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP},

@@ -58,7 +58,7 @@ public class Contact implements Serializable {
      *
      * @mbggenerated
      */
-    private Boolean state;
+    private Integer state;
 
     /**
      *  记录创建时间,所属表字段为user_contacts.create_time
@@ -132,11 +132,11 @@ public class Contact implements Serializable {
         this.email = email;
     }
 
-    public Boolean getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(Boolean state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

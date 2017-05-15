@@ -405,6 +405,66 @@ public class RoomMonitorExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsLatestIsNull() {
+            addCriterion("is_latest is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestIsNotNull() {
+            addCriterion("is_latest is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestEqualTo(Integer value) {
+            addCriterion("is_latest =", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestNotEqualTo(Integer value) {
+            addCriterion("is_latest <>", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestGreaterThan(Integer value) {
+            addCriterion("is_latest >", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_latest >=", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestLessThan(Integer value) {
+            addCriterion("is_latest <", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestLessThanOrEqualTo(Integer value) {
+            addCriterion("is_latest <=", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestIn(List<Integer> values) {
+            addCriterion("is_latest in", values, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestNotIn(List<Integer> values) {
+            addCriterion("is_latest not in", values, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestBetween(Integer value1, Integer value2) {
+            addCriterion("is_latest between", value1, value2, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_latest not between", value1, value2, "isLatest");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

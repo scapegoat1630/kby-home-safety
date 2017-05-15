@@ -30,7 +30,7 @@ public class User implements Serializable {
      *
      * @mbggenerated
      */
-    private Byte sex;
+    private Integer sex;
 
     /**
      *  d电话号码,所属表字段为user.phone_number
@@ -58,7 +58,7 @@ public class User implements Serializable {
      *
      * @mbggenerated
      */
-    private Byte state;
+    private Integer state;
 
     /**
      *  继续创建时间,所属表字段为user.create_time
@@ -100,11 +100,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Byte getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -132,11 +132,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

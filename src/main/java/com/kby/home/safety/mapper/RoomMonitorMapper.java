@@ -27,4 +27,6 @@ public interface RoomMonitorMapper {
     int updateByPrimaryKeySelective(RoomMonitor record);
 
     int updateByPrimaryKey(RoomMonitor record);
+    //-----------------------------------------------
+    RoomMonitor getMonitorByRoomId(@Param("roomId") Integer roomId);
 }

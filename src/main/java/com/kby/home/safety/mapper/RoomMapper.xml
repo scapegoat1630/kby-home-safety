@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.kby.home.safety.model.Room" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="room_type" property="roomType" jdbcType="BIT" />
+    <result column="room_type" property="roomType" jdbcType="INTEGER" />
     <result column="temperature_threshold" property="temperatureThreshold" jdbcType="DOUBLE" />
     <result column="humidity_threshold" property="humidityThreshold" jdbcType="DOUBLE" />
     <result column="smoke_concentration" property="smokeConcentration" jdbcType="DOUBLE" />
@@ -110,7 +110,7 @@
     insert into user_room (user_id, room_type, temperature_threshold, 
       humidity_threshold, smoke_concentration, create_time, 
       update_time)
-    values (#{userId,jdbcType=INTEGER}, #{roomType,jdbcType=BIT}, #{temperatureThreshold,jdbcType=DOUBLE}, 
+    values (#{userId,jdbcType=INTEGER}, #{roomType,jdbcType=INTEGER}, #{temperatureThreshold,jdbcType=DOUBLE}, 
       #{humidityThreshold,jdbcType=DOUBLE}, #{smokeConcentration,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -147,7 +147,7 @@
         #{userId,jdbcType=INTEGER},
       </if>
       <if test="roomType != null" >
-        #{roomType,jdbcType=BIT},
+        #{roomType,jdbcType=INTEGER},
       </if>
       <if test="temperatureThreshold != null" >
         #{temperatureThreshold,jdbcType=DOUBLE},
@@ -182,7 +182,7 @@
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.roomType != null" >
-        room_type = #{record.roomType,jdbcType=BIT},
+        room_type = #{record.roomType,jdbcType=INTEGER},
       </if>
       <if test="record.temperatureThreshold != null" >
         temperature_threshold = #{record.temperatureThreshold,jdbcType=DOUBLE},
@@ -208,7 +208,7 @@
     update user_room
     set id = #{record.id,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      room_type = #{record.roomType,jdbcType=BIT},
+      room_type = #{record.roomType,jdbcType=INTEGER},
       temperature_threshold = #{record.temperatureThreshold,jdbcType=DOUBLE},
       humidity_threshold = #{record.humidityThreshold,jdbcType=DOUBLE},
       smoke_concentration = #{record.smokeConcentration,jdbcType=DOUBLE},
@@ -225,7 +225,7 @@
         user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="roomType != null" >
-        room_type = #{roomType,jdbcType=BIT},
+        room_type = #{roomType,jdbcType=INTEGER},
       </if>
       <if test="temperatureThreshold != null" >
         temperature_threshold = #{temperatureThreshold,jdbcType=DOUBLE},
@@ -248,7 +248,7 @@
   <update id="updateByPrimaryKey" parameterType="com.kby.home.safety.model.Room" >
     update user_room
     set user_id = #{userId,jdbcType=INTEGER},
-      room_type = #{roomType,jdbcType=BIT},
+      room_type = #{roomType,jdbcType=INTEGER},
       temperature_threshold = #{temperatureThreshold,jdbcType=DOUBLE},
       humidity_threshold = #{humidityThreshold,jdbcType=DOUBLE},
       smoke_concentration = #{smokeConcentration,jdbcType=DOUBLE},
@@ -256,4 +256,33 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
+    insert into `user_room` (user_id, room_type, temperature_threshold, humidity_threshold, smoke_concentration,
+    create_time, update_time)
+    values
+    <foreach item="item" open="" close="" separator="," collection="list">
+      (
+      #{item.userId,jdbcType=INTEGER},
+
+      #{item.roomType,jdbcType=INTEGER},
+
+      #{item.temperatureThreshold,jdbcType=DOUBLE},
+
+      #{item.humidityThreshold,jdbcType=DOUBLE},
+
+      #{item.smokeConcentration,jdbcType=DOUBLE},
+
+      #{item.createTime,jdbcType=TIMESTAMP},
+
+      #{item.updateTime,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+  <select id="getRoomByRoomType"  resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from `user_room`
+    where  user_id = #{userId,jdbcType=INTEGER} and  room_type = #{roomType,jdbcType=INTEGER}
+  </select>
 </mapper>
