@@ -3,39 +3,26 @@ package com.kby.home.safety.api.vo;
 import java.util.Date;
 
 /**
- * Created by zhangpeng12 on 2017/5/16.
+ * Created by zhangpeng12 on 2017/5/15.
  */
-public class UserVo {
-
-    private Integer id;
+public class BaseUser {
 
 
     private String username;
 
+    private String password;
 
+    private String passwordRepeat;
 
-    private Integer sex;
-
+    private Byte sex;
 
     private String phoneNumber;
 
     private String address;
 
-
     private String email;
 
-
-    private Integer state;
-
-    private Date createTime;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private Byte state;
 
     public String getUsername() {
         return username;
@@ -45,11 +32,19 @@ public class UserVo {
         this.username = username;
     }
 
-    public Integer getSex() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Byte getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(Byte sex) {
         this.sex = sex;
     }
 
@@ -77,19 +72,19 @@ public class UserVo {
         this.email = email;
     }
 
-    public Integer getState() {
+    public Byte getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(Byte state) {
         this.state = state;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public String getPasswordRepeat() {
+        return passwordRepeat;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setPasswordRepeat(String passwordRepeat) {
+        this.passwordRepeat = passwordRepeat;
     }
 }

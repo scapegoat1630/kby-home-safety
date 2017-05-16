@@ -1,18 +1,18 @@
 package com.kby.home.safety.api.web;
 
-import com.kby.home.safety.api.vo.UserVo;
+import com.kby.home.safety.api.vo.BaseUser;
 
 /**
  * Created by zhangpeng12 on 2017/5/15.
  */
 public class UserRegisterRequest extends Request {
-    private UserVo user;
+    private BaseUser user;
 
-    public UserVo getUser() {
+    public BaseUser getUser() {
         return user;
     }
 
-    public void setUser(UserVo user) {
+    public void setUser(BaseUser user) {
         this.user = user;
     }
 

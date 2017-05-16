@@ -2,8 +2,9 @@ package com.kby.home.safety.controller;
 
 import com.kby.home.safety.Constants;
 import com.kby.home.safety.api.exception.BusinessException;
-import com.kby.home.safety.api.web.*;
 import com.kby.home.safety.api.vo.UserVo;
+import com.kby.home.safety.api.web.*;
+import com.kby.home.safety.api.vo.BaseUser;
 import com.kby.home.safety.mapper.RoomMapper;
 import com.kby.home.safety.mapper.RoomMonitorMapper;
 import com.kby.home.safety.mapper.UserMapper;
@@ -78,7 +79,7 @@ public class UserController {
     @ResponseBody
     @Transactional
     public Response register(@RequestBody UserRegisterRequest request){
-        UserVo vo = request.getUser();
+        BaseUser vo = request.getUser();
         Date registerTime = new Date();
         UserRegisterResponse response = new UserRegisterResponse();
         try{
@@ -97,6 +98,8 @@ public class UserController {
                 error = "住址为空";
             }else if (StringUtils.isEmpty(vo.getEmail())){
                 error = "邮箱为空";
+            }else if(StringUtils.isEmpty(vo.getPhoneNumber())){
+                error = "联系电话为空";
             }
             if(error != null){
                 throw new BusinessException(ResponseStatus.Invalid.getCode(), error);
@@ -156,9 +159,78 @@ public class UserController {
         response.setSuccess(true);
         return response;
     }
-    @RequestMapping("/querUserInformation")
+    @RequestMapping("/queryUserInformation")
     @ResponseBody
-    public User querUserInformation(){
-        return new User();
+    @Transactional
+    public Response querUserInformation(Request request){
+        User user = userMapper.selectByPrimaryKey(request.getAccessKey());
+        Response<UserVo> response = new Response<UserVo>();
+        UserVo vo = new UserVo();
+        BeanUtils.copyProperties(user,vo);
+        response.setSuccess(true);
+        response.setResult(vo);
+        return response;
+    }
+
+    @RequestMapping("/updateUserInformation")
+    @ResponseBody
+    @Transactional
+    public Response updateUserInformation(@RequestBody UpdateUserRequest request){
+
+        User user = userMapper.selectByPrimaryKey(request.getAccessKey());
+        BaseUser baseUser = request.getUser();
+        if (StringUtils.isNotEmpty(baseUser.getAddress())){
+           user.setAddress(baseUser.getAddress());
+        }
+        if (StringUtils.isNotEmpty(baseUser.getEmail())){
+            user.setEmail(baseUser.getEmail());
+        }
+        if(StringUtils.isNotEmpty(baseUser.getPhoneNumber())){
+            user.setPhoneNumber(baseUser.getPhoneNumber());
+        }
+        user.setUpdateTime(new Date());
+        userMapper.updateByPrimaryKey(user);
+        Response<UserVo> response = new Response<UserVo>();
+        UserVo vo = new UserVo();
+        BeanUtils.copyProperties(user, vo);
+        response.setResult(vo);
+        response.setSuccess(true);
+        return response;
+    }
+    @RequestMapping("/updateUserPassword")
+    @ResponseBody
+    @Transactional
+    public Response updateUserPassword(UpdateUserPasswordRequest request){
+
+        User user = userMapper.selectByPrimaryKey(request.getAccessKey());
+        Response response = new Response();
+        String error = null;
+        try{
+            if (StringUtils.isEmpty(request.getPassword())){
+                error = "密码为空";
+            }else if (StringUtils.isEmpty(request.getPasswordRepeat())){
+                error = "重复密码为空";
+            }else if (!StringUtils.equals(request.getPassword(),request.getPasswordRepeat())) {
+                error = "密码与重复密码不相等";
+            }
+            if(error != null){
+                throw new BusinessException(ResponseStatus.Invalid.getCode(), error);
+            }
+            user.setPassword(request.getPassword());
+            user.setUpdateTime(new Date());
+            userMapper.updateByPrimaryKey(user);
+        }catch (BusinessException e){
+            response.setSuccess(false);
+            response.setError(e.getMessage());
+            return response;
+        }catch (Exception e){
+            response.setSuccess(false);
+            response.setError(e.getMessage());
+            return response;
+        }
+        UserVo vo = new UserVo();
+        BeanUtils.copyProperties(user,vo);
+        response.setResult(vo);
+        return response;
     }
 }

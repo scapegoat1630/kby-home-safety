@@ -298,4 +298,10 @@
     <include refid="Base_Column_List" />
     from user where username = #{username,jdbcType=VARCHAR} and  password = #{password,jdbcType=VARCHAR}
   </select>
+
+  <select id="getUserByUsername"  resultType="com.kby.home.safety.model.User">
+    select
+    <include refid="Base_Column_List" />
+    from user where username = #{username,jdbcType=VARCHAR}
+  </select>
 </mapper>

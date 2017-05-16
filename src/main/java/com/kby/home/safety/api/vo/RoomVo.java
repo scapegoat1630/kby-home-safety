@@ -1,9 +1,11 @@
 package com.kby.home.safety.api.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by zhangpeng12 on 2017/5/15.
  */
-public class RoomVo {
+public class RoomVo implements Serializable{
 
 
     private Integer roomId;
@@ -14,9 +16,15 @@ public class RoomVo {
 
     private Double temperature;
 
+    private String temperatureStatus;
+
     private Double humidity;
 
+    private String humidityStatus;
+
     private Double smoke;
+
+    private String smokeStatus;
 
     private Double temperatureThreshold;
 
@@ -110,5 +118,29 @@ public class RoomVo {
         sb.append(", smokeConcentration=").append(smokeConcentration);
         sb.append('}');
         return sb.toString();
+    }
+
+    public String getTemperatureStatus() {
+        return temperatureStatus;
+    }
+
+    public void setTemperatureStatus(String temperatureStatus) {
+        this.temperatureStatus = temperatureStatus;
+    }
+
+    public String getHumidityStatus() {
+        return humidityStatus;
+    }
+
+    public void setHumidityStatus(String humidityStatus) {
+        this.humidityStatus = humidityStatus;
+    }
+
+    public String getSmokeStatus() {
+        return smokeStatus;
+    }
+
+    public void setSmokeStatus(String smokeStatus) {
+        this.smokeStatus = smokeStatus;
     }
 }
