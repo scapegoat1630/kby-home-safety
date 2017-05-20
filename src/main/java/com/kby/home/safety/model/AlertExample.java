@@ -584,6 +584,196 @@ public class AlertExample {
             addCriterion("udpate_time not between", value1, value2, "udpateTime");
             return (Criteria) this;
         }
+
+        public Criteria andContentIsNull() {
+            addCriterion("content is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentIsNotNull() {
+            addCriterion("content is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentEqualTo(String value) {
+            addCriterion("content =", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotEqualTo(String value) {
+            addCriterion("content <>", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentGreaterThan(String value) {
+            addCriterion("content >", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentGreaterThanOrEqualTo(String value) {
+            addCriterion("content >=", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLessThan(String value) {
+            addCriterion("content <", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLessThanOrEqualTo(String value) {
+            addCriterion("content <=", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLike(String value) {
+            addCriterion("content like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotLike(String value) {
+            addCriterion("content not like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentIn(List<String> values) {
+            addCriterion("content in", values, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotIn(List<String> values) {
+            addCriterion("content not in", values, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentBetween(String value1, String value2) {
+            addCriterion("content between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotBetween(String value1, String value2) {
+            addCriterion("content not between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestIsNull() {
+            addCriterion("is_latest is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestIsNotNull() {
+            addCriterion("is_latest is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestEqualTo(Integer value) {
+            addCriterion("is_latest =", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestNotEqualTo(Integer value) {
+            addCriterion("is_latest <>", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestGreaterThan(Integer value) {
+            addCriterion("is_latest >", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_latest >=", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestLessThan(Integer value) {
+            addCriterion("is_latest <", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestLessThanOrEqualTo(Integer value) {
+            addCriterion("is_latest <=", value, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestIn(List<Integer> values) {
+            addCriterion("is_latest in", values, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestNotIn(List<Integer> values) {
+            addCriterion("is_latest not in", values, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestBetween(Integer value1, Integer value2) {
+            addCriterion("is_latest between", value1, value2, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLatestNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_latest not between", value1, value2, "isLatest");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIsNull() {
+            addCriterion("mark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIsNotNull() {
+            addCriterion("mark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkEqualTo(Integer value) {
+            addCriterion("mark =", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotEqualTo(Integer value) {
+            addCriterion("mark <>", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkGreaterThan(Integer value) {
+            addCriterion("mark >", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkGreaterThanOrEqualTo(Integer value) {
+            addCriterion("mark >=", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkLessThan(Integer value) {
+            addCriterion("mark <", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkLessThanOrEqualTo(Integer value) {
+            addCriterion("mark <=", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIn(List<Integer> values) {
+            addCriterion("mark in", values, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotIn(List<Integer> values) {
+            addCriterion("mark not in", values, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkBetween(Integer value1, Integer value2) {
+            addCriterion("mark between", value1, value2, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotBetween(Integer value1, Integer value2) {
+            addCriterion("mark not between", value1, value2, "mark");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -16,6 +16,8 @@ public class SetRoomStatusRequest {
 
     private String username;
 
+    private Boolean userEnteredAlarm;
+
     public Double getTemperature() {
         return temperature;
     }
@@ -54,5 +56,14 @@ public class SetRoomStatusRequest {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    public Boolean getUserEnteredAlarm() {
+        return userEnteredAlarm;
+    }
+
+    public void setUserEnteredAlarm(Boolean userEnteredAlarm) {
+        this.userEnteredAlarm = userEnteredAlarm;
     }
 }

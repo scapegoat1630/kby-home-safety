@@ -37,6 +37,10 @@
                 <td height="30"><input type="text"   name="smoke" /></td>
             </tr>
             <tr>
+                <td width="100" height="30">是否向用户发送防盗警：</td>
+                <td height="30"><input type="radio"   name="userEnteredAlarm"/></td>
+            </tr>
+            <tr>
                 <td height="30" colspan=2 align="center">
                     <input type="reset" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="submit" />

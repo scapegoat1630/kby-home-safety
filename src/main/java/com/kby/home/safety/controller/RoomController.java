@@ -22,11 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by zhangpeng12 on 2017/5/15.
- */
+
+
 @Controller
 @RequestMapping("/room")
 public class RoomController {
@@ -38,6 +38,8 @@ public class RoomController {
     private RoomMapper roomMapper;
     @Autowired
     private AlertMapper alertMapper;
+
+    private  static final SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @RequestMapping("/queryRoomStatus")
     @ResponseBody
@@ -56,7 +58,7 @@ public class RoomController {
             Room room = roomMapper.getRoomByRoomType(request.getAccessKey(),request.getRoomType());
             if(room == null){
                 throw new BusinessException(ResponseStatus.Invalid.getCode(), "您访问的房屋不存在");
-            }
+           }
             RoomVo vo = getRoomVo(room);
             //------------------------------------------------
             response.setSuccess(true);
@@ -154,6 +156,20 @@ public class RoomController {
                 alert.setCreateTime(new Date());
                 alert.setUdpateTime(new Date());
                 alert.setAlertTime(new Date());
+                //-----------------拼接报警内容--------------------------------
+                //2017年4月17日 12:12:00 您的客厅温度超过阈值25℃产生过异常，异常值为：26℃
+                StringBuilder sb = new StringBuilder();
+                sb.append(fmt.format(alert.getAlertTime()))
+                        .append("您的")
+                        .append(Constants.ROOM_TYPE_NAME[roomType])
+                        .append(Constants.ALERT_TYPE_NAME[alert.getAlertType()])
+                        .append("超过阈值")
+                        .append(room.getTemperatureThreshold())
+                        .append("℃产生过异常，异常值为：")
+                        .append( moninor.getTemperature())
+                        .append("℃");
+                alert.setContent(sb.toString());
+                alert.setIsLatest(1);
                 alertMapper.insert(alert);
             }
 
@@ -163,32 +179,123 @@ public class RoomController {
                 Alert alert = new Alert();
                 alert.setRoomId(room.getId());
                 alert.setUserId(user.getId());
-                alert.setAlertType(Constants.ALERT_TYPE_TEMPERATURE);
-                alert.setAlertValue(moninor.getTemperature());
+                alert.setAlertType(Constants.ALERT_TYPE_HUMIDITY);
+                alert.setAlertValue(moninor.getHumidity());
                 alert.setCreateTime(new Date());
                 alert.setUdpateTime(new Date());
                 alert.setAlertTime(new Date());
+                //-----------------拼接报警内容--------------------------------
+                //2017年4月9日 12:12:00 您的厨房湿度度超过阈值29%产生过异常，异常值为：30%
+                StringBuilder sb = new StringBuilder();
+                sb.append(fmt.format(alert.getAlertTime()))
+                        .append("您的")
+                        .append(Constants.ROOM_TYPE_NAME[roomType])
+                        .append(Constants.ALERT_TYPE_NAME[alert.getAlertType()])
+                        .append("超过阈值")
+                        .append(room.getTemperatureThreshold())
+                        .append("%产生过异常，异常值为：")
+                        .append( moninor.getHumidity())
+                        .append("%");
+                alert.setContent(sb.toString());
+                alert.setIsLatest(1);
                 alertMapper.insert(alert);
             }
 
             if(moninor.getSmoke() != null &&
                     room.getSmokeConcentration() != null &&
-                    moninor.getSmoke() >room.getSmokeConcentration()){
+                    moninor.getSmoke() >room.getSmokeConcentration()) {
                 Alert alert = new Alert();
                 alert.setRoomId(room.getId());
                 alert.setUserId(user.getId());
-                alert.setAlertType(Constants.ALERT_TYPE_TEMPERATURE);
-                alert.setAlertValue(moninor.getTemperature());
+                alert.setAlertType(Constants.ALERT_TYPE_SMOKE);
+                alert.setAlertValue(moninor.getSmoke());
                 alert.setCreateTime(new Date());
                 alert.setUdpateTime(new Date());
                 alert.setAlertTime(new Date());
+                //-----------------拼接报警内容--------------------------------
+                //2017年4月6日 12:12:00 您的客厅烟雾浓度超过阈值1.67%FT产生过异常，异常值为：1.69%FT
+                StringBuilder sb = new StringBuilder();
+                sb.append(fmt.format(alert.getAlertTime()))
+                        .append("您的")
+                        .append(Constants.ROOM_TYPE_NAME[roomType])
+                        .append(Constants.ALERT_TYPE_NAME[alert.getAlertType()])
+                        .append("超过阈值")
+                        .append(room.getTemperatureThreshold())
+                        .append("%FT产生过异常，异常值为：")
+                        .append(moninor.getTemperature())
+                        .append("%FT");
+                alert.setContent(sb.toString());
+                alert.setIsLatest(1);
                 alertMapper.insert(alert);
+            }
+                //-----------------防盗警--------------------------------
+                if(request.getUserEnteredAlarm() != null && request.getUserEnteredAlarm() == true) {
+                    Alert alert = new Alert();
+                    alert.setRoomId(room.getId());
+                    alert.setUserId(user.getId());
+                    alert.setAlertType(Constants.ALERT_TYPE_USER_ENTERED);
+                    alert.setAlertValue(moninor.getTemperature());
+                    alert.setCreateTime(new Date());
+                    alert.setUdpateTime(new Date());
+                    alert.setAlertTime(new Date());
+                    //-----------------拼接报警内容--------------------------------
+                    //2017年4月6日 12:12:00 您的客厅烟雾浓度超过阈值1.67%FT产生过异常，异常值为：1.69%FT
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(fmt.format(alert.getAlertTime()))
+                            .append("您的")
+                            .append(Constants.ROOM_TYPE_NAME[roomType])
+                            .append("发生防盗警报");
+                    alert.setContent(sb.toString());
+                    alert.setIsLatest(1);
+                    alertMapper.insert(alert);
+                }
+            //-----------------火警--------------------------------
+            if(moninor.getTemperature() >= 50  && moninor.getSmoke() >= 0.65) {
+                Alert alert = new Alert();
+                alert.setRoomId(room.getId());
+                alert.setUserId(user.getId());
+                alert.setAlertType(Constants.ALERT_TYPE_FIRE);
+                alert.setAlertValue(1d);
+                alert.setCreateTime(new Date());
+                alert.setUdpateTime(new Date());
+                alert.setAlertTime(new Date());
+                //-----------------拼接报警内容--------------------------------
+                //.2017年3月22日 12:12:00 您的客厅发生火警，温度达到50℃，烟雾浓度达到0.65%FT
+                StringBuilder sb = new StringBuilder();
+                sb.append(fmt.format(alert.getAlertTime()))
+                        .append("您的")
+                        .append(Constants.ROOM_TYPE_NAME[roomType])
+                        .append("发生火警，温度达到50℃，烟雾浓度达到0.65%FT");
+                alert.setContent(sb.toString());
+                alert.setIsLatest(1);
+                alertMapper.insert(alert);
+            }
+                //-----------------水警----------------------------------
+                    if(moninor.getTemperature() > 40 && moninor.getHumidity() >80){
+                        Alert alert = new Alert();
+                        alert.setRoomId(room.getId());
+                        alert.setUserId(user.getId());
+                        alert.setAlertType(Constants.ALERT_TYPE_WATER);
+                        alert.setAlertValue(1d);
+                        alert.setCreateTime(new Date());
+                        alert.setUdpateTime(new Date());
+                        alert.setAlertTime(new Date());
+                        //-----------------拼接报警内容--------------------------------
+                        //2017年3月13日 12:12:00 您的客厅发生水警，温度达到40℃，湿度达到80%。
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(fmt.format(alert.getAlertTime()))
+                                .append("您的")
+                                .append(Constants.ROOM_TYPE_NAME[roomType])
+                                .append("发生水警，温度达到40℃，湿度达到80%");
+                        alert.setContent(sb.toString());
+                        alert.setIsLatest(1);
+                        alertMapper.insert(alert);
             }
         }catch (BusinessException e){
             e.printStackTrace();
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "success";
+        return "redirect:success";
     }
 }

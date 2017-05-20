@@ -5,60 +5,81 @@ import java.util.Date;
 
 public class Alert implements Serializable {
     /**
-     *  ,所属表字段为alert_history.id
+     *  ,鎵�睘琛ㄥ瓧娈典负alert_history.id
      *
      * @mbggenerated
      */
     private Integer id;
 
     /**
-     *  ,所属表字段为alert_history.user_id
+     *  ,鎵�睘琛ㄥ瓧娈典负alert_history.user_id
      *
      * @mbggenerated
      */
     private Integer userId;
 
     /**
-     *  ,所属表字段为alert_history.room_id
+     *  ,鎵�睘琛ㄥ瓧娈典负alert_history.room_id
      *
      * @mbggenerated
      */
     private Integer roomId;
 
     /**
-     *  ,所属表字段为alert_history.alert_type
+     *  报警的类型：,鎵�睘琛ㄥ瓧娈典负alert_history.alert_type
      *
      * @mbggenerated
      */
     private Integer alertType;
 
     /**
-     *  ,所属表字段为alert_history.alert_value
+     *  ,鎵�睘琛ㄥ瓧娈典负alert_history.alert_value
      *
      * @mbggenerated
      */
     private Double alertValue;
 
     /**
-     *  ,所属表字段为alert_history.alert_time
+     *  ,鎵�睘琛ㄥ瓧娈典负alert_history.alert_time
      *
      * @mbggenerated
      */
     private Date alertTime;
 
     /**
-     *  ,所属表字段为alert_history.create_time
+     *  ,鎵�睘琛ㄥ瓧娈典负alert_history.create_time
      *
      * @mbggenerated
      */
     private Date createTime;
 
     /**
-     *  ,所属表字段为alert_history.udpate_time
+     *  ,鎵�睘琛ㄥ瓧娈典负alert_history.udpate_time
      *
      * @mbggenerated
      */
     private Date udpateTime;
+
+    /**
+     *  报警内容,鎵�睘琛ㄥ瓧娈典负alert_history.content
+     *
+     * @mbggenerated
+     */
+    private String content;
+
+    /**
+     *  用户是否已经阅读,鎵�睘琛ㄥ瓧娈典负alert_history.is_latest
+     *
+     * @mbggenerated
+     */
+    private Integer isLatest;
+
+    /**
+     *  标记,鎵�睘琛ㄥ瓧娈典负alert_history.mark
+     *
+     * @mbggenerated
+     */
+    private Integer mark;
 
     private static final long serialVersionUID = 1L;
 
@@ -126,6 +147,30 @@ public class Alert implements Serializable {
         this.udpateTime = udpateTime;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getIsLatest() {
+        return isLatest;
+    }
+
+    public void setIsLatest(Integer isLatest) {
+        this.isLatest = isLatest;
+    }
+
+    public Integer getMark() {
+        return mark;
+    }
+
+    public void setMark(Integer mark) {
+        this.mark = mark;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -145,7 +190,10 @@ public class Alert implements Serializable {
             && (this.getAlertValue() == null ? other.getAlertValue() == null : this.getAlertValue().equals(other.getAlertValue()))
             && (this.getAlertTime() == null ? other.getAlertTime() == null : this.getAlertTime().equals(other.getAlertTime()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUdpateTime() == null ? other.getUdpateTime() == null : this.getUdpateTime().equals(other.getUdpateTime()));
+            && (this.getUdpateTime() == null ? other.getUdpateTime() == null : this.getUdpateTime().equals(other.getUdpateTime()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
+            && (this.getIsLatest() == null ? other.getIsLatest() == null : this.getIsLatest().equals(other.getIsLatest()))
+            && (this.getMark() == null ? other.getMark() == null : this.getMark().equals(other.getMark()));
     }
 
     @Override
@@ -160,6 +208,9 @@ public class Alert implements Serializable {
         result = prime * result + ((getAlertTime() == null) ? 0 : getAlertTime().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUdpateTime() == null) ? 0 : getUdpateTime().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        result = prime * result + ((getIsLatest() == null) ? 0 : getIsLatest().hashCode());
+        result = prime * result + ((getMark() == null) ? 0 : getMark().hashCode());
         return result;
     }
 
@@ -177,6 +228,9 @@ public class Alert implements Serializable {
         sb.append(", alertTime=").append(alertTime);
         sb.append(", createTime=").append(createTime);
         sb.append(", udpateTime=").append(udpateTime);
+        sb.append(", content=").append(content);
+        sb.append(", isLatest=").append(isLatest);
+        sb.append(", mark=").append(mark);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

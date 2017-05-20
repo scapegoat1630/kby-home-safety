@@ -5,70 +5,70 @@ import java.util.Date;
 
 public class User implements Serializable {
     /**
-     *  自增主键,所属表字段为user.id
+     *  自增主键,鎵�睘琛ㄥ瓧娈典负user.id
      *
      * @mbggenerated
      */
     private Integer id;
 
     /**
-     *  用户名,所属表字段为user.username
+     *  用户名,鎵�睘琛ㄥ瓧娈典负user.username
      *
      * @mbggenerated
      */
     private String username;
 
     /**
-     *  ,所属表字段为user.password
+     *  ,鎵�睘琛ㄥ瓧娈典负user.password
      *
      * @mbggenerated
      */
     private String password;
 
     /**
-     *  性别,所属表字段为user.sex
+     *  性别,鎵�睘琛ㄥ瓧娈典负user.sex
      *
      * @mbggenerated
      */
     private Integer sex;
 
     /**
-     *  d电话号码,所属表字段为user.phone_number
+     *  d电话号码,鎵�睘琛ㄥ瓧娈典负user.phone_number
      *
      * @mbggenerated
      */
     private String phoneNumber;
 
     /**
-     *  用户住址,所属表字段为user.address
+     *  用户住址,鎵�睘琛ㄥ瓧娈典负user.address
      *
      * @mbggenerated
      */
     private String address;
 
     /**
-     *  用户邮箱,所属表字段为user.email
+     *  用户邮箱,鎵�睘琛ㄥ瓧娈典负user.email
      *
      * @mbggenerated
      */
     private String email;
 
     /**
-     *  用户状态,所属表字段为user.state
+     *  用户状态,鎵�睘琛ㄥ瓧娈典负user.state
      *
      * @mbggenerated
      */
     private Integer state;
 
     /**
-     *  继续创建时间,所属表字段为user.create_time
+     *  继续创建时间,鎵�睘琛ㄥ瓧娈典负user.create_time
      *
      * @mbggenerated
      */
     private Date createTime;
 
     /**
-     *  记录修改时间,所属表字段为user.update_time
+     *  记录修改时间,鎵�睘琛ㄥ瓧娈典负user.update_time
      *
      * @mbggenerated
      */

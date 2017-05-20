@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2017-05-18 10:09:41
+Date: 2017-05-20 11:44:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,8 +28,11 @@ CREATE TABLE `alert_history` (
   `alert_time` datetime DEFAULT NULL,
   `create_time` datetime NOT NULL,
   `udpate_time` datetime DEFAULT NULL,
+  `content` varchar(255) NOT NULL COMMENT '报警内容',
+  `is_latest` int(4) NOT NULL COMMENT '用户是否已经阅读',
+  `mark` int(4) DEFAULT '0' COMMENT '标记',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for room_monitor
@@ -45,7 +48,7 @@ CREATE TABLE `room_monitor` (
   `create_time` datetime NOT NULL COMMENT '记录产生时间',
   `update_time` datetime NOT NULL COMMENT '记录修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for user

@@ -6,6 +6,7 @@ package com.kby.home.safety.api.web;
 public class QueryAlertRequest extends Request {
     private Integer currPageNo ;
     private Integer pageSize;
+    private String content;
 
     public Integer getCurrPageNo() {
         return currPageNo;
@@ -21,5 +22,23 @@ public class QueryAlertRequest extends Request {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("QueryAlertRequest{");
+        sb.append("currPageNo=").append(currPageNo);
+        sb.append(", pageSize=").append(pageSize);
+        sb.append(", content='").append(content).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

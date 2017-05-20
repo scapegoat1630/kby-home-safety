@@ -17,7 +17,11 @@ public class Constants {
 
         public static int ALERT_TYPE_SMOKE = 3;
 
-        public static String[] ROOM_TYPE_NAME = {"客厅","厨房","卧室"};
-        public static String[] ALERT_TYPE_NAME = {"温度","湿度","烟雾浓度"};
+        public static int ALERT_TYPE_USER_ENTERED = 4;
+        public static int ALERT_TYPE_FIRE = 5;
+        public static int ALERT_TYPE_WATER = 6;
+
+        public static String[] ROOM_TYPE_NAME = {"","客厅","厨房","卧室"};
+        public static String[] ALERT_TYPE_NAME = {"","温度","湿度","烟雾浓度"};
 
 }

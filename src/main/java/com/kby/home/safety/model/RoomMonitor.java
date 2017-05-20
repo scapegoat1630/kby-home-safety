@@ -5,56 +5,56 @@ import java.util.Date;
 
 public class RoomMonitor implements Serializable {
     /**
-     *  ,所属表字段为room_monitor.id
+     *  ,鎵�睘琛ㄥ瓧娈典负room_monitor.id
      *
      * @mbggenerated
      */
     private Integer id;
 
     /**
-     *  room类型,所属表字段为room_monitor.room_id
+     *  room类型,鎵�睘琛ㄥ瓧娈典负room_monitor.room_id
      *
      * @mbggenerated
      */
     private Integer roomId;
 
     /**
-     *  监控值,所属表字段为room_monitor.temperature
+     *  监控值,鎵�睘琛ㄥ瓧娈典负room_monitor.temperature
      *
      * @mbggenerated
      */
     private Double temperature;
 
     /**
-     *  ,所属表字段为room_monitor.humidity
+     *  ,鎵�睘琛ㄥ瓧娈典负room_monitor.humidity
      *
      * @mbggenerated
      */
     private Double humidity;
 
     /**
-     *  ,所属表字段为room_monitor.smoke
+     *  ,鎵�睘琛ㄥ瓧娈典负room_monitor.smoke
      *
      * @mbggenerated
      */
     private Double smoke;
 
     /**
-     *  ,所属表字段为room_monitor.is_latest
+     *  ,鎵�睘琛ㄥ瓧娈典负room_monitor.is_latest
      *
      * @mbggenerated
      */
     private Integer isLatest;
 
     /**
-     *  记录产生时间,所属表字段为room_monitor.create_time
+     *  记录产生时间,鎵�睘琛ㄥ瓧娈典负room_monitor.create_time
      *
      * @mbggenerated
      */
     private Date createTime;
 
     /**
-     *  记录修改时间,所属表字段为room_monitor.update_time
+     *  记录修改时间,鎵�睘琛ㄥ瓧娈典负room_monitor.update_time
      *
      * @mbggenerated
      */

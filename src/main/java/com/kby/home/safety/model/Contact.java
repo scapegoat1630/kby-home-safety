@@ -5,70 +5,70 @@ import java.util.Date;
 
 public class Contact implements Serializable {
     /**
-     *  ,所属表字段为user_contacts.id
+     *  ,鎵�睘琛ㄥ瓧娈典负user_contacts.id
      *
      * @mbggenerated
      */
     private Integer id;
 
     /**
-     *  用户id,所属表字段为user_contacts.user_id
+     *  用户id,鎵�睘琛ㄥ瓧娈典负user_contacts.user_id
      *
      * @mbggenerated
      */
     private Integer userId;
 
     /**
-     *  联系人姓名,所属表字段为user_contacts.contact_name
+     *  联系人姓名,鎵�睘琛ㄥ瓧娈典负user_contacts.contact_name
      *
      * @mbggenerated
      */
     private String contactName;
 
     /**
-     *  l联系人性别,所属表字段为user_contacts.sex
+     *  l联系人性别,鎵�睘琛ㄥ瓧娈典负user_contacts.sex
      *
      * @mbggenerated
      */
     private Byte sex;
 
     /**
-     *  l联系人电话号码,所属表字段为user_contacts.phone_number
+     *  l联系人电话号码,鎵�睘琛ㄥ瓧娈典负user_contacts.phone_number
      *
      * @mbggenerated
      */
     private String phoneNumber;
 
     /**
-     *  l联系人住址,所属表字段为user_contacts.address
+     *  l联系人住址,鎵�睘琛ㄥ瓧娈典负user_contacts.address
      *
      * @mbggenerated
      */
     private String address;
 
     /**
-     *  联系人邮箱,所属表字段为user_contacts.email
+     *  联系人邮箱,鎵�睘琛ㄥ瓧娈典负user_contacts.email
      *
      * @mbggenerated
      */
     private String email;
 
     /**
-     *  联系人状态,所属表字段为user_contacts.state
+     *  联系人状态,鎵�睘琛ㄥ瓧娈典负user_contacts.state
      *
      * @mbggenerated
      */
     private Integer state;
 
     /**
-     *  记录创建时间,所属表字段为user_contacts.create_time
+     *  记录创建时间,鎵�睘琛ㄥ瓧娈典负user_contacts.create_time
      *
      * @mbggenerated
      */
     private Date createTime;
 
     /**
-     *  记录修改时间,所属表字段为user_contacts.update_time
+     *  记录修改时间,鎵�睘琛ㄥ瓧娈典负user_contacts.update_time
      *
      * @mbggenerated
      */

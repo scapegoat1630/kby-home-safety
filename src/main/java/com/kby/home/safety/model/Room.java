@@ -5,56 +5,56 @@ import java.util.Date;
 
 public class Room implements Serializable {
     /**
-     *  自增id,所属表字段为user_room.id
+     *  自增id,鎵�睘琛ㄥ瓧娈典负user_room.id
      *
      * @mbggenerated
      */
     private Integer id;
 
     /**
-     *  用户id,所属表字段为user_room.user_id
+     *  用户id,鎵�睘琛ㄥ瓧娈典负user_room.user_id
      *
      * @mbggenerated
      */
     private Integer userId;
 
     /**
-     *  房间类型：{1：客厅，2：厨房，3：卧室},所属表字段为user_room.room_type
+     *  房间类型：{1：客厅，2：厨房，3：卧室},鎵�睘琛ㄥ瓧娈典负user_room.room_type
      *
      * @mbggenerated
      */
     private Integer roomType;
 
     /**
-     *  温度阈值,所属表字段为user_room.temperature_threshold
+     *  温度阈值,鎵�睘琛ㄥ瓧娈典负user_room.temperature_threshold
      *
      * @mbggenerated
      */
     private Double temperatureThreshold;
 
     /**
-     *  湿度阈值,所属表字段为user_room.humidity_threshold
+     *  湿度阈值,鎵�睘琛ㄥ瓧娈典负user_room.humidity_threshold
      *
      * @mbggenerated
      */
     private Double humidityThreshold;
 
     /**
-     *  烟雾浓度阈值,所属表字段为user_room.smoke_concentration
+     *  烟雾浓度阈值,鎵�睘琛ㄥ瓧娈典负user_room.smoke_concentration
      *
      * @mbggenerated
      */
     private Double smokeConcentration;
 
     /**
-     *  记录创建时间,所属表字段为user_room.create_time
+     *  记录创建时间,鎵�睘琛ㄥ瓧娈典负user_room.create_time
      *
      * @mbggenerated
      */
     private Date createTime;
 
     /**
-     *  记录修改时间,所属表字段为user_room.update_time
+     *  记录修改时间,鎵�睘琛ㄥ瓧娈典负user_room.update_time
      *
      * @mbggenerated
      */
@@ -68,7 +68,6 @@ public class Room implements Serializable {
     public Room() {
 
     }
-
 
     public Integer getId() {
         return id;
