@@ -21,7 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -229,8 +233,41 @@ public class UserController {
             return response;
         }
         UserVo vo = new UserVo();
-        BeanUtils.copyProperties(user,vo);
+        BeanUtils.copyProperties(user, vo);
         response.setResult(vo);
         return response;
+    }
+
+    @RequestMapping("/uploadUserImage")
+    @ResponseBody
+    @Transactional
+    public Response uploadUserImage(HttpServletRequest request){
+        Response response = new Response();
+
+        try{
+            MultipartHttpServletRequest filerequest = (MultipartHttpServletRequest)request;
+            MultipartFile file = (MultipartFile)filerequest.getFile("imagePath");
+            String path = request.getSession().getServletContext().getRealPath("upload");
+            String imageName = request.getParameter("accessKey");
+            String fileName = file.getOriginalFilename();
+            File targetFile = new File(path, imageName + ".jpg");
+            if(!targetFile.exists()){
+                targetFile.mkdirs();
+            }
+            file.transferTo(targetFile);
+            response.setSuccess(true);
+        }catch (BusinessException e){
+            response.setSuccess(false);
+            response.setError(e.getMessage());
+        }catch (Exception e){
+            response.setSuccess(false);
+            response.setError(e.getMessage());
+
+        }
+        return response;
+    }
+    @RequestMapping("/upload")
+    public String setRoomStatusPage(){
+        return "fileupload";
     }
 }
