@@ -247,7 +247,7 @@ public class UserController {
         try{
             MultipartHttpServletRequest filerequest = (MultipartHttpServletRequest)request;
             MultipartFile file = (MultipartFile)filerequest.getFile("imagePath");
-            String path = request.getSession().getServletContext().getRealPath("upload");
+            String path = request.getSession().getServletContext().getRealPath("resources/upload");
             String imageName = request.getParameter("accessKey");
             String fileName = file.getOriginalFilename();
             File targetFile = new File(path, imageName + ".jpg");

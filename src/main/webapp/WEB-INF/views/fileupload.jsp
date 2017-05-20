@@ -16,9 +16,15 @@
 
         <table  style="font-size:14px;">
             <tr>
-                <td width="100" height="30">用户名</td>
+                <td width="100" height="30">头像：</td>
                 <td height="30">
                     <input type="file" name="imagePath" multiple />
+                </td>
+            </tr>
+            <tr>
+                <td width="100" height="30">用户id</td>
+                <td height="30">
+                    <input type="text" name="accessKey" multiple />
                 </td>
             </tr>
 
