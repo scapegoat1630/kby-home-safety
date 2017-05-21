@@ -15,6 +15,11 @@
             </list>
         </property>
     </bean>
+    <bean id="jPushClient"
+          class="cn.jpush.api.JPushClient" scope="singleton">
+        <constructor-arg value="${jpush.masterSecret}" />
+        <constructor-arg value="${jpush.appKey}" />
+    </bean>
 
     <context:property-placeholder properties-ref="config"/>
 

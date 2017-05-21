@@ -15,12 +15,14 @@ import com.kby.home.safety.model.Alert;
 import com.kby.home.safety.model.Room;
 import com.kby.home.safety.model.RoomMonitor;
 import com.kby.home.safety.model.User;
+import com.kby.home.safety.service.JPushServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,6 +40,8 @@ public class RoomController {
     private RoomMapper roomMapper;
     @Autowired
     private AlertMapper alertMapper;
+    @Autowired
+    private JPushServiceImpl jPushService;
 
     private  static final SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -171,6 +175,8 @@ public class RoomController {
                 alert.setContent(sb.toString());
                 alert.setIsLatest(1);
                 alertMapper.insert(alert);
+                //推送通知
+                jPushService.pushAlert(alert);
             }
 
             if(moninor.getHumidity() != null &&
@@ -199,6 +205,8 @@ public class RoomController {
                 alert.setContent(sb.toString());
                 alert.setIsLatest(1);
                 alertMapper.insert(alert);
+                //推送通知
+                jPushService.pushAlert(alert);
             }
 
             if(moninor.getSmoke() != null &&
@@ -227,6 +235,8 @@ public class RoomController {
                 alert.setContent(sb.toString());
                 alert.setIsLatest(1);
                 alertMapper.insert(alert);
+                //推送通知
+                jPushService.pushAlert(alert);
             }
                 //-----------------防盗警--------------------------------
                 if(request.getUserEnteredAlarm() != null && request.getUserEnteredAlarm() == true) {
@@ -248,6 +258,8 @@ public class RoomController {
                     alert.setContent(sb.toString());
                     alert.setIsLatest(1);
                     alertMapper.insert(alert);
+                    //推送通知
+                    jPushService.pushAlert(alert);
                 }
             //-----------------火警--------------------------------
             if(moninor.getTemperature() >= 50  && moninor.getSmoke() >= 0.65) {
@@ -269,6 +281,8 @@ public class RoomController {
                 alert.setContent(sb.toString());
                 alert.setIsLatest(1);
                 alertMapper.insert(alert);
+                //推送通知
+                jPushService.pushAlert(alert);
             }
                 //-----------------水警----------------------------------
                     if(moninor.getTemperature() > 40 && moninor.getHumidity() >80){
@@ -290,6 +304,8 @@ public class RoomController {
                         alert.setContent(sb.toString());
                         alert.setIsLatest(1);
                         alertMapper.insert(alert);
+                        //推送通知
+                        jPushService.pushAlert(alert);
             }
         }catch (BusinessException e){
             e.printStackTrace();
