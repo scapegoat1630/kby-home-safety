@@ -40,7 +40,7 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Response login(UserLoginRequest request){
+    public Response login(@RequestBody UserLoginRequest request){
         UserLoginRespose response = new UserLoginRespose();
         try{
             //---------------参数检查------------------
@@ -163,7 +163,7 @@ public class UserController {
     @RequestMapping("/queryUserInformation")
     @ResponseBody
     @Transactional
-    public Response querUserInformation(Request request){
+    public Response querUserInformation( @RequestBody Request request){
         User user = userMapper.selectByPrimaryKey(request.getAccessKey());
         Response<UserVo> response = new Response<UserVo>();
         UserVo vo = new UserVo();
@@ -201,7 +201,7 @@ public class UserController {
     @RequestMapping("/updateUserPassword")
     @ResponseBody
     @Transactional
-    public Response updateUserPassword(UpdateUserPasswordRequest request){
+    public Response updateUserPassword(@RequestBody UpdateUserPasswordRequest request){
 
         User user = userMapper.selectByPrimaryKey(request.getAccessKey());
         Response response = new Response();

@@ -43,7 +43,7 @@ public class AlertController {
     @RequestMapping("/queryAlarming")
     @ResponseBody
     @Transactional
-    public Response queryAlert(QueryAlarmingRequest request){
+    public Response queryAlert(@RequestBody QueryAlarmingRequest request){
         Response response = new Response();
         try {
             User user = userMapper.selectByPrimaryKey(request.getAccessKey());
@@ -76,7 +76,7 @@ public class AlertController {
     @RequestMapping("/queryAlert")
     @ResponseBody
     @Transactional
-    public Response queryAlert(QueryAlertRequest request){
+    public Response queryAlert(@RequestBody QueryAlertRequest request){
         QueryAlertResponse response = new QueryAlertResponse();
         try {
             if(request.getPageSize() == null){

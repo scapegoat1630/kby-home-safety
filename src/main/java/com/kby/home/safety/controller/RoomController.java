@@ -20,6 +20,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,7 +49,7 @@ public class RoomController {
     @RequestMapping("/queryRoomStatus")
     @ResponseBody
     @Transactional
-    public Response queryRoomStatus(QueryRoomStatusRequest request){
+    public Response queryRoomStatus(@RequestBody QueryRoomStatusRequest request){
         Response response = new Response();
         try{
             int roomType = request.getRoomType();
