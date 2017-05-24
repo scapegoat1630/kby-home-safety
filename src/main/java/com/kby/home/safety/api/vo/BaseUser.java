@@ -14,7 +14,7 @@ public class BaseUser {
 
     private String passwordRepeat;
 
-    private Byte sex;
+    private Integer sex;
 
     private String phoneNumber;
 
@@ -22,7 +22,8 @@ public class BaseUser {
 
     private String email;
 
-    private Byte state;
+    private Integer state;
+
 
     public String getUsername() {
         return username;
@@ -40,11 +41,19 @@ public class BaseUser {
         this.password = password;
     }
 
-    public Byte getSex() {
+    public String getPasswordRepeat() {
+        return passwordRepeat;
+    }
+
+    public void setPasswordRepeat(String passwordRepeat) {
+        this.passwordRepeat = passwordRepeat;
+    }
+
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -72,19 +81,11 @@ public class BaseUser {
         this.email = email;
     }
 
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
-    }
-
-    public String getPasswordRepeat() {
-        return passwordRepeat;
-    }
-
-    public void setPasswordRepeat(String passwordRepeat) {
-        this.passwordRepeat = passwordRepeat;
     }
 }
