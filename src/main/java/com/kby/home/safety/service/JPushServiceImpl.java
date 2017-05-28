@@ -26,7 +26,7 @@ public class JPushServiceImpl {
     public boolean pushAlert(Alert alert){
         PushPayload pushPayload = PushPayload.newBuilder()
                 .setPlatform(Platform.android())
-                .setAudience(Audience.registrationId(alert.getId().toString()))
+                .setAudience(Audience.alias(alert.getUserId().toString()))
                 .setNotification(Notification.android(alert.getContent(), "报警", null))
                 .build();
         try {

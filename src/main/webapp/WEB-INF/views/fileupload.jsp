@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <form id="fileupload" action="/user/uploadUserImage" method="POST" enctype="multipart/form-data">
+    <form id="fileupload" action="${pageContext.request.contextPath}/user/uploadUserImage" method="POST" enctype="multipart/form-data">
 
 
         <table  style="font-size:14px;">

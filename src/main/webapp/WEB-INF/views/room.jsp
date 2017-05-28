@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="form">
-    <form  action="/room/setRoomStatus">
+    <form  action="${pageContext.request.contextPath}/room/setRoomStatus">
         <table  style="font-size:14px;">
             <tr>
                 <td width="100" height="30">用户名</td>

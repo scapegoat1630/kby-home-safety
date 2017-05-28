@@ -3,10 +3,8 @@ package com.kby.home.safety.controller;
 import com.kby.home.safety.Constants;
 import com.kby.home.safety.api.exception.BusinessException;
 import com.kby.home.safety.api.vo.RoomVo;
-import com.kby.home.safety.api.web.QueryRoomStatusRequest;
-import com.kby.home.safety.api.web.Response;
-import com.kby.home.safety.api.web.ResponseStatus;
-import com.kby.home.safety.api.web.SetRoomStatusRequest;
+import com.kby.home.safety.api.vo.ThresholdVo;
+import com.kby.home.safety.api.web.*;
 import com.kby.home.safety.mapper.AlertMapper;
 import com.kby.home.safety.mapper.RoomMapper;
 import com.kby.home.safety.mapper.RoomMonitorMapper;
@@ -27,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.List;
 
 
 @Controller
@@ -111,6 +109,48 @@ public class RoomController {
             vo.setSmokeStatus("正常");
         }
         return vo;
+    }
+    @RequestMapping("/setRoomThreshold")
+    @ResponseBody
+    @Transactional
+    public Response setRoomThreshold(@RequestBody SetRoomThresholdRequest request){
+        Response response = new Response();
+        try{
+            List<ThresholdVo> thresholdVoList = request.getThresholdVoList();
+            if(thresholdVoList == null || thresholdVoList.size() != 3){
+                throw new BusinessException(ResponseStatus.Invalid.getCode(), "必须同时设置三个房间的阈值");
+            }
+            for(ThresholdVo vo : thresholdVoList ){
+                int roomType = vo.getRoomType();
+                //---------------参数检查------------------
+                if(roomType != Constants.ROOM_TYPE_BEDROOM &&
+                        roomType != Constants.ROOM_TYPE_LIVINGROOM &&
+                        roomType != Constants.ROOM_TYPE_KITCHEN){
+                    throw new BusinessException(ResponseStatus.Invalid.getCode(), "您访问的房屋类型不存在");
+                }
+                //-----------------------------------------
+                Room room = roomMapper.getRoomByRoomType(request.getAccessKey(), roomType);
+                if(room == null){
+                    throw new BusinessException(ResponseStatus.Invalid.getCode(), "您访问的房屋不存在");
+                }
+                room.setTemperatureThreshold(vo.getTemperatureThreshold());
+                room.setSmokeConcentration(vo.getSmokeConcentration());
+                room.setHumidityThreshold(vo.getHumidityThreshold());
+                room.setUpdateTime(new Date());
+                roomMapper.updateByPrimaryKey(room);
+            }
+            //------------------------------------------------
+            response.setSuccess(true);
+        }catch (BusinessException e){
+            response.setSuccess(false);
+            response.setError(e.getMessage());
+            return response;
+        }catch (Exception e){
+            response.setSuccess(false);
+            response.setError(e.getMessage());
+            return response;
+        }
+        return response;
     }
 
     @RequestMapping("/setRoomStatusPage")
@@ -313,6 +353,6 @@ public class RoomController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "redirect:success";
+        return "success";
     }
 }
