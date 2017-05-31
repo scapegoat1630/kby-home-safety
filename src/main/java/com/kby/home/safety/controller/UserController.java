@@ -131,7 +131,7 @@ public class UserController {
                 room.setCreateTime(registerTime);
                 room.setUpdateTime(registerTime);
                 room.setHumidityThreshold(25d);//湿度默认值
-                room.setSmokeConcentration(25d);//烟雾浓度默认值
+                room.setSmokeConcentration(0.65d);//烟雾浓度默认值
                 room.setTemperatureThreshold(25d);//温度默认值
             }
             roomMapper.batchInsert(roomList);

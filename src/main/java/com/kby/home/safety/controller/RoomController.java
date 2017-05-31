@@ -239,7 +239,7 @@ public class RoomController {
                         .append(Constants.ROOM_TYPE_NAME[roomType])
                         .append(Constants.ALERT_TYPE_NAME[alert.getAlertType()])
                         .append("超过阈值")
-                        .append(room.getTemperatureThreshold())
+                        .append(room.getHumidityThreshold())
                         .append("%产生过异常，异常值为：")
                         .append( moninor.getHumidity())
                         .append("%");
@@ -269,7 +269,7 @@ public class RoomController {
                         .append(Constants.ROOM_TYPE_NAME[roomType])
                         .append(Constants.ALERT_TYPE_NAME[alert.getAlertType()])
                         .append("超过阈值")
-                        .append(room.getTemperatureThreshold())
+                        .append(room.getSmokeConcentration())
                         .append("%FT产生过异常，异常值为：")
                         .append(moninor.getTemperature())
                         .append("%FT");

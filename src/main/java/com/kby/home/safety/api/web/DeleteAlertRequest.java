@@ -6,13 +6,14 @@ import java.util.List;
  * Created by zhangpeng12 on 2017/5/20.
  */
 public class DeleteAlertRequest extends Request {
-    private List<Integer> Ids;
+    private List<Integer> ids;
+
 
     public List<Integer> getIds() {
-        return Ids;
+        return ids;
     }
 
     public void setIds(List<Integer> ids) {
-        Ids = ids;
+        this.ids = ids;
     }
 }

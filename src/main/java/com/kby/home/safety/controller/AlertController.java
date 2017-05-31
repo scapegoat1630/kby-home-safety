@@ -122,12 +122,13 @@ public class AlertController {
         Response response = new Response();
         try {
             User user = userMapper.selectByPrimaryKey(request.getAccessKey());
+            if(user == null){
+                throw new BusinessException(ResponseStatus.Invalid.getCode(), "您未登陆，请登录");
+            }
             AlertExample alertExample = new AlertExample();
             AlertExample.Criteria criteria = alertExample.createCriteria();
             criteria.andUserIdEqualTo(request.getAccessKey());
-            if(request.getIds() != null){
-                criteria.andIdIn(request.getIds());
-            }
+            criteria.andIdIn(request.getIds());
             alertMapper.deleteByExample(alertExample);
             response.setSuccess(true);
         }catch (BusinessException e){
@@ -154,15 +155,16 @@ public class AlertController {
         Response response = new Response();
         try {
             User user = userMapper.selectByPrimaryKey(request.getAccessKey());
+            if(user == null){
+                throw new BusinessException(ResponseStatus.Invalid.getCode(), "您未登陆，请登录");
+            }
             AlertExample alertExample = new AlertExample();
             AlertExample.Criteria criteria = alertExample.createCriteria();
             criteria.andUserIdEqualTo(request.getAccessKey());
-            if(request.getIds() != null){
-                criteria.andIdIn(request.getIds());
-            }
+            criteria.andIdIn(request.getIds());
             Alert alert = new Alert();
             alert.setMark(1);
-            alertMapper.updateByExampleSelective(alert,alertExample);
+            alertMapper.updateByExampleSelective(alert, alertExample);
             response.setSuccess(true);
         }catch (BusinessException e){
             e.printStackTrace();

@@ -626,7 +626,7 @@ public class AlertExample {
         }
 
         public Criteria andContentLike(String value) {
-            addCriterion("content like", value, "content");
+            addCriterion("content like ","%" +value + "%", "content");
             return (Criteria) this;
         }
 
